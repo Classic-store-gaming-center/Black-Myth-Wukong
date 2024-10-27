@@ -44,13 +44,13 @@
     <input type="text" id="price" value="LKR 800" readonly>
 
     <label for="customer-name">Name:</label>
-    <input type="text" id="customer-name" placeholder="Enter your name" required>
+    <input type="text" id="customer-name" placeholder="Enter your name">
 
     <label for="email">Email:</label>
-    <input type="text" id="email" placeholder="Enter your email" required>
+    <input type="text" id="email" placeholder="Enter your email">
 
     <label for="contact-number">Contact Number:</label>
-    <input type="text" id="contact-number" placeholder="Enter your contact number" required>
+    <input type="text" id="contact-number" placeholder="Enter your contact number">
 
     <button onclick="generateWhatsAppMessage()">Buy</button>
 
@@ -62,15 +62,9 @@
             const email = document.getElementById('email').value;
             const contactNumber = document.getElementById('contact-number').value;
 
-            // Check if all fields are filled
-            if (!customerName || !email || !contactNumber) {
-                alert("Please fill out all fields.");
-                return;
-            }
-
             // Prepare the message content
             const messageContent = 
-                `🛒 Product Order Confirmation\n\n` + 
+                `🛒 Product Order Confirmation\n\n` +
                 `Product Name: ${productName}\n` +
                 `Price: ${price}\n\n` +
                 `Customer Details:\n` +
@@ -81,7 +75,7 @@
 
             // Encode the message for a WhatsApp URL
             const encodedMessage = encodeURIComponent(messageContent);
-            const whatsappUrl = `https://api.whatsapp.com/send/?phone=94719321375&text=${encodedMessage}`;
+            const whatsappUrl = `https://api.whatsapp.com/send/?text=${encodedMessage}&app_absent=0`;
             
             // Open the WhatsApp message in a new tab
             window.open(whatsappUrl, '_blank');
@@ -90,4 +84,3 @@
 
 </body>
 </html>
-
